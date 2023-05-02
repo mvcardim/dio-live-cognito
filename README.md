@@ -1,4 +1,4 @@
-# Roteiro para o desenvolvimento da atividade prática do DIO Live Coding do dia 17/11/2021
+# Roteiro para o desenvolvimento do projeto Cognito da aws.
 
 ## Serviços AWS utilizados
 
