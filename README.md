@@ -11,7 +11,8 @@
 
 ### Criando uma API REST no Amazon API Gateway
 
--Criando uma api gateway utilizando o terraform com metodo GET.
+- Criando uma api gateway utilizando o terraform com metodo GET.
+
 provider "aws" {
   region = "us-east-1"
 }
