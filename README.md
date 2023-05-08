@@ -11,64 +11,19 @@
 
 ### Criando uma API REST no Amazon API Gateway
 
-- Criando uma api gateway utilizando o terraform com metodo GET.
-
-provider "aws" {
-  region = "us-east-1"
-}
-
-resource "aws_api_gateway_rest_api" "example_api" {
-  name = "example-api"
-}
-
-resource "aws_api_gateway_resource" "example_resource" {
-  rest_api_id = aws_api_gateway_rest_api.example_api.id
-  parent_id   = aws_api_gateway_rest_api.example_api.root_resource_id
-  path_part   = "example"
-}
-
-resource "aws_api_gateway_method" "example_method" {
-  rest_api_id   = aws_api_gateway_rest_api.example_api.id
-  resource_id   = aws_api_gateway_resource.example_resource.id
-  http_method   = "GET"
-  authorization = "NONE"
-}
-
-resource "aws_api_gateway_integration" "example_integration" {
-  rest_api_id = aws_api_gateway_rest_api.example_api.id
-  resource_id = aws_api_gateway_resource.example_resource.id
-  http_method = aws_api_gateway_method.example_method.http_method
-
-  integration_http_method = "GET"
-  type                    = "HTTP_PROXY"
-  uri                     = "http://example.com"
-}
-
-resource "aws_api_gateway_deployment" "example_deployment" {
-  rest_api_id = aws_api_gateway_rest_api.example_api.id
-  stage_name  = "dev"
-}
-
+- Criando uma api gateway utilizando o terraform com metodo POST.
+- Utilize o arquivo ApiRest.tf
 
 ### No Amazon DynamoDB
 
-- DynamoDB Dashboard -> Tables -> Create table -> Table name [Items] -> Partition key [id] -> Create table
-
+- Crie a tabela utilizando o arquivo tabela.tf
 ### No AWS Lambda
 
 #### Função para inserir item
-
-- Lambda Dashboard -> Create function -> Name [put_item_function] -> Create function
-- Inserir código da função ```put_item_function.js``` disponível na pasta ```/src``` -> Deploy
-- Configuration -> Execution role -> Abrir a Role no console do IAM
-- IAM -> Roles -> Role criada no passo anterior -> Permissions -> Add inline policy
-- Service - DynamoDB -> Manual actions -> add actions -> putItem
-- Resources -> Add arn -> Selecionar o arn da tabela criada no DynamoDB -> Add
-- Review policy -> Name [lambda_dynamodb_putItem_policy] -> Create policy
+- Insira item utiliando o arquivo lambda.tf
 
 ### Integrando o API Gateway com o Lambda backend
 
-- API Gateway Dashboard -> Selecionar a API criada -> Resources -> Selecionar o resource criado -> Action -> Create method - POST
 - Integration type -> Lambda function -> Use Lambda Proxy Integration -> Lambda function -> Selecionar a função Lambda criada -> Save
 - Actions -> Deploy API -> Deployment Stage -> New Stage [dev] -> Deploy
 
