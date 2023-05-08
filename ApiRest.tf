@@ -1,7 +1,6 @@
 provider "aws" {
   region = "us-west-2"  # Substitua pela região desejad
-  access_key = "AKIAXWYVTXXMNYLGBKJ5"
-  secret_key = "LcnR545zDAQEqmcpLvKP0cmkAFypuTZTV2N3ADSm"
+ 
 }
 
 resource "aws_api_gateway_rest_api" "example_api" {
